@@ -1,0 +1,19 @@
+@media (max-width: 430px) {
+  #textarea {
+    width: 95vw;
+    height: 25vh;
+  }
+}
+
+@media (max-width: 900px) and (min-width: 430px) {
+  #textarea {
+    width: 40vw;
+    height: 30vh;
+  }
+}
+
+@media (max-width: 1400px) and (min-width: 1024px) {
+  #textarea {
+    height: 40vh;
+  }
+}
