@@ -9,27 +9,26 @@ export function Box() {
   const [Language, setLanguage] = useState("en");
 
   const translate = () => {
+    const encodedParams = new URLSearchParams();
+    encodedParams.append("q", Text);
+    encodedParams.append("target", Language);
+
     const options = {
       method: "POST",
-      url: "https://microsoft-translator-text.p.rapidapi.com/translate",
-      params: {
-        "to[0]": Language,
-        "api-version": "3.0",
-        profanityAction: "NoAction",
-        textType: "plain",
-      },
+      url: "https://google-translate1.p.rapidapi.com/language/translate/v2",
       headers: {
-        "content-type": "application/json",
+        "content-type": "application/x-www-form-urlencoded",
+        "Accept-Encoding": "application/gzip",
         "X-RapidAPI-Key": "d0bbda32demsh196c210339bebb1p163372jsn4be713e62816",
-        "X-RapidAPI-Host": "microsoft-translator-text.p.rapidapi.com",
+        "X-RapidAPI-Host": "google-translate1.p.rapidapi.com",
       },
-      data: `[{"Text": "${Text}" }]`,
+      data: encodedParams,
     };
 
     axios
       .request(options)
       .then(function (response) {
-        const translated = response.data[0].translations[0].text;
+        const translated = response.data.data.translations[0].translatedText;
         setTextTranslated(translated);
       })
       .catch(function (error) {
@@ -37,7 +36,7 @@ export function Box() {
       });
 
     if (!Text) {
-      toast.error("Enter some text!", {
+      toast.error("Escreva algo!", {
         style: {
           background: "#1E1E1E",
           color: "#f7f7f7",
@@ -61,7 +60,7 @@ export function Box() {
             id="textarea"
             cols="40"
             rows="10"
-            placeholder="Enter a text"
+            placeholder="Escreva algo"
             onChange={({ target }) => setText(target.value)}
             className="resize-none bg-home border-2 border-primary rounded outline-none text-white p-3"
           ></textarea>
@@ -69,7 +68,7 @@ export function Box() {
 
         <div className="flex justify-center flex-col">
           <div className="flex gap-2">
-            <span className="text-sm text-second font-bold">To:</span>
+            <span className="text-sm text-second font-bold">Para:</span>
             <select
               className="text-black bg-primary rounded outline-none"
               value={Language}
@@ -92,7 +91,7 @@ export function Box() {
               readOnly={true}
               cols="40"
               rows="10"
-              placeholder="Select a language"
+              placeholder="Selecione uma língua"
               value={TextTranslated}
               className="resize-none bg-home border-2 border-primary rounded outline-none text-white p-3"
             ></textarea>
@@ -106,7 +105,7 @@ export function Box() {
         onClick={translate}
         className="text-black font-medium bg-primary rounded outline-none p-1 cursor-pointer"
       >
-        Translate
+        Traduzir
       </motion.div>
     </div>
   );

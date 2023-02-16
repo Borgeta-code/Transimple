@@ -29,7 +29,7 @@ export function Nav() {
         </a>
 
         <a
-          href={"https://www.linkedin.com/in/matheus-borges-4a7469239/"}
+          href={"https://www.linkedin.com/in/matheus-borges-coder/"}
           target="_blank"
           rel="noopener noreferrer"
         >
