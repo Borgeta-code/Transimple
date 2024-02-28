@@ -25,7 +25,7 @@ npm run dev
 assim seu projeto estará pronto e rodando no endereço:
 
 ```
-http://localhost:300
+http://localhost:3000
 ```
 
 ## 🛠️ Construído com
